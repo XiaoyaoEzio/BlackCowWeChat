@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+body {
+	background-color:#f8f8f8;
+}
+
+.money {
+	color: #f1a225;
+}
+
+.priceList {
+	margin-left: 2.6em;
+	margin-top: -1.2em;
+}

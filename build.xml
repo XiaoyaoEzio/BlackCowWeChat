@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="ChargingStation-WeChat" basedir="." default="build">
+
+	<!-- 指定当前项目的一些目录属性 -->
+	<property name="src.dir" location="src" />
+	<property name="res.dir" location="res" />
+	<property name="webroot" location="WebRoot" />
+	
+	<!-- 编译生成的class文件临时存放目录 -->
+	<property name="dest" location="dest" />
+	<!-- 最终打包的文件夹 -->
+	<property name="temp.dir" location="temp" />
+
+	<property name="test-srouce" location="test" />
+		
+	<target name="clean">
+		<echo message="清理生成过程中的临时文件" />
+		<delete dir="${temp.dir}" />
+		<delete dir="${webroot}/WEB-INF/classes" />
+		<delete dir="${dest}" />
+	</target>
+
+	<target name="prepare">
+		<echo message="创建目标文件夹和classes文件夹" />
+		<mkdir dir="${temp.dir}" />
+		<mkdir dir="${temp.dir}/WEB-INF/classes" />
+		<mkdir dir="${dest}" />
+	</target>
+
+	<target name="compile" depends="prepare">
+		<echo message="编译Java源代码" />
+		<javac destdir="${temp.dir}/WEB-INF/classes" srcdir="${src.dir}">
+			<compilerarg line="-encoding UTF-8 " />
+			<sourcepath path="${test-srouce}" />
+			<classpath>
+				<!-- 配置基本依赖库目录 -->
+				<fileset dir="${webroot}/WEB-INF/lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<echo>将相关的配置文件拷贝到class目录</echo>
+		<copy todir="${temp.dir}/WEB-INF/classes">
+			<fileset dir="${src.dir}" excludes="**/*.java"/>
+		</copy>
+	</target>
+
+	<target name="build" depends="compile">
+		<echo> 
+		==================================================
+		||
+		||   开始打包.
+		||
+		==================================================
+		</echo>
+		<echo>将资源文件夹复制到class文件目录</echo>
+		<copy todir="${temp.dir}/WEB-INF/classes">
+			<fileset dir="${res.dir}" />
+		</copy>
+		<echo>将webroot目录的所有文件拷贝到temp</echo>
+		<copy todir="${temp.dir}">
+			<fileset dir="${webroot}">
+				<!-- 不要拷贝libsrc -->
+				<exclude name="/WEB-INF/libsrc/"/>
+			</fileset>
+		</copy>			
+		<echo>打war包</echo>
+		<war destfile="${dest}/ChargingStation-WeChat.war" basedir="${temp.dir}" webxml="${temp.dir}/WEB-INF/web.xml" />
+		<echo>删除临时文件</echo>
+		<delete dir="${temp.dir}" />
+		<echo>完成war包</echo>
+	</target>
+	
+</project>

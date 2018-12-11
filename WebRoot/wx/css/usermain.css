@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+.account-stage nav ul li:after, .account-stage nav ul li:before {
+	content: '';
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+.account-stage .header:before, .account-stage nav ul:before,
+	.account-stage nav ul li:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200%;
+	height: 200%;
+	-webkit-transform: scale(.5);
+	transform: scale(.5);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	box-sizing: border-box;
+	pointer-events: none
+}
+
+.account-stage {
+	position: absolute;
+	width: 100%;
+	min-height: 100%;
+	background: #f0f0f0
+}
+
+.account-stage>div, .account-stage>nav ul {
+	background: #fff;
+	list-style: none;
+}
+
+.account-stage .header {
+	margin-bottom: .625rem;
+	padding: 1.375rem .9375rem;
+	position: relative
+}
+
+.account-stage .header:before {
+	border-bottom: 1px solid #d6d6d6
+}
+
+.account-stage .header .avatar {
+	display: inline-block;
+	width: 3.4375rem;
+	height: 3.4375rem;
+	border-radius: 50%;
+	vertical-align: middle
+}
+
+.account-stage .header .name {
+	display: inline-block;
+	padding-left: .75rem;
+	line-height: 1;
+	vertical-align: middle;
+	color: #333;
+	font-family: PingFang-SC-Medium
+}
+
+.account-stage .header .user-type {
+	font-size: 13px;
+	position: absolute;
+	right: .9375rem;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%)
+}
+
+.account-stage nav ul {
+	padding: 0 .9375rem;
+	margin-bottom: .625rem;
+	position: relative
+}
+
+.account-stage nav ul:before {
+	border-top: 1px solid #d6d6d6;
+	border-bottom: 1px solid #d6d6d6
+}
+
+.account-stage nav ul li {
+	position: relative;
+	padding: .75rem 0;
+	color: #333;
+	line-height: 1.25rem
+}
+
+.account-stage nav ul li:before {
+	visibility: visible;
+	border-bottom: 1px solid #e6e6e6
+}
+
+.account-stage nav ul li:last-child:before {
+	border: none
+}
+
+.account-stage nav ul li img {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-right: .625rem
+}
+
+.account-stage nav ul li .icon-discount {
+	margin-left: .3125rem;
+	width: 21px;
+	height: 18px
+}
+
+.account-stage nav ul li .text {
+	display: block;
+	float: left
+}
+
+.account-stage nav ul li .desc {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: block
+}
+
+.account-stage nav ul li .money {
+	color: #f54c61;
+	right: 1.25rem
+}
+
+.account-stage nav ul li .deposit {
+	right: 1.25rem
+}
+
+.account-stage nav ul li .phone {
+	right: 0
+}
+
+.icon-angle-right {
+	position: absolute;
+	right:0.9375rem;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: block;
+	width: .625rem;
+	height: 1.25rem;
+	margin-right: 0
+}
+
+.account-stage nav ul li .icon-angle-right {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	display: block;
+	width: .625rem;
+	height: 1.25rem;
+	margin-right: 0
+}

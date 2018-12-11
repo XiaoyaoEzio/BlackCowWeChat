@@ -1,0 +1,143 @@
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+
+.money {
+	color: #f1a225;
+}
+
+.priceList, .serviceMoney {
+	margin-left: 3.6em;
+	margin-top: -1.3em;
+}
+
+.showIOSActionSheet, .nextBtn ,.groundLockTempt{
+	clear: both;
+	margin: 20px 15px;
+	margin-bottom: -1em;
+}
+
+.groundLock, .gunConnect {
+	margin-top: 2rem;
+	/*border:1px solid blue;*/
+	display: block;
+}
+
+.lock, .gun {
+	text-align:center;
+}	
+
+.lockImg {
+	width: 6rem;
+	height: 6rem;
+}
+
+.LockSingle, .gunSingle {
+	margin-top: 3rem;
+	width: 100%;
+}
+.LockA ,.gunA {
+	float: left;
+	width: 50%;
+}
+.LockB, .gunB {
+	margin-top: 1rem;
+}
+
+.selectBtn {
+	width :1.5rem;
+	height: 1.5rem;
+}
+
+.tipsLabel {
+	margin-top: 10px;
+}
+
+.tipsLabel3 {
+	margin-left: 15px;
+	margin-top: 15px;
+}
+
+.tipsLabel3 div {
+	margin-top: 10px;
+}
+
+._input {
+	z-index: 999;
+	width: 9%;
+	text-align: center;
+	height: 35px;
+	font-size: 20px;
+	float: left;
+	border: 1px solid #cccccc;
+	line-height: 35px;
+	color:#1aad19;
+}
+
+.clearBtn {
+	height: 37px;
+	width: 41px;
+	float: left;
+	margin-left: 5px;
+	
+}
+
+}
+.show {
+	margin: 10px;
+}
+
+.show a {
+	padding: 2.7%;
+	float: left;
+	width: 6.8%;
+	height: 20px;
+	box-shadow: 0px 2px 5px #C6CCEF;
+	border: 0;
+	margin: 1%;
+	color: #1aad19;
+	text-align: center;
+}
+
+.active {
+	border: 1px solid #1aad19;
+}
+
+._provinceBox, .provinceA, .provinceB, .provinceAB {
+	z-index: 5000;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	left: 0px;
+	background: #ffffff;
+	margin-bottom: 5px;
+}
+
+.provinceAB div a:nth-child(n+37) {
+	color: #1aad19;
+}
+
+.provinceAB div a:nth-child(-n+10) {
+	color: #1aad19;
+}
+
+.provinceB div a:nth-child(-n+10) {
+	color: #4A4ADE;
+}
+
+/* 修改微信dialog居中造成底部弹框遮挡的问题 */
+#inputBody {
+	top: 20%;
+}
+
+.addtapa div {
+	width: 97%;
+	margin-left: 2%;
+}
+
+.hide {
+	display: none;
+}

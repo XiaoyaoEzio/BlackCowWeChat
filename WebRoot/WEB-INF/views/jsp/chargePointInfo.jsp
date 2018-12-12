@@ -63,7 +63,7 @@
         .weui-grid2 {
             position: relative;
             float: left;
-            width: 30%;
+            width: 22%;
             margin-left: 2.5%;
             padding: 12px 0px;
             font-size: 13px;
@@ -119,7 +119,7 @@
         }
 
         .order-btn {
-            width: 80%;
+            width: 85%;
             background: #1aad19;
         }
 
@@ -165,7 +165,7 @@
             <input type="hidden" name="machine_number" value="437"/>
             <input type="hidden" name="order_sn" value=""/>
             <input type="hidden" name="line_num" value="1"/>
-            <input type="hidden" name="package_id" value="2"/>
+            <input type="hidden" name="chargeRank" id="chargeRank" value="2"/>
 
             <div class="weui-cells__title" style="clear: both">
                 <span style="float: left">设备号 [${deviceSn}]</span>
@@ -186,13 +186,14 @@
                 </ul>
             </div>
             <div class="weui-grids2" style="margin-top: 8px;">
-                <a href="javascript:;" class="weui-grid2 cdsc " data-id="1">0.25元15分</a>
-                <a href="javascript:;" class="weui-grid2 cdsc on" data-id="2">0.5元30分</a>
-                <a href="javascript:;" class="weui-grid2 cdsc" data-id="0" id="showPicker">更多</a>
+                <a href="javascript:;" class="weui-grid2 cdsc " data-id="1" id="chargeRank1">4小时</a>
+                <a href="javascript:;" class="weui-grid2 cdsc on" data-id="2" id="chargeRank2">6小时</a>
+                <a href="javascript:;" class="weui-grid2 cdsc" data-id="3" id="chargeRank3">8小时</a>
+                <a href="javascript:;" class="weui-grid2 cdsc" data-id="4" id="chargeRank4">自动充满</a>
                 <div style="clear: both"></div>
             </div>
             <div class="page__bd" style="text-align: center; margin-top: 16px;">
-                <a href="javascript:starBegain();" class="weui-btn weui-btn_primary order-btn">下一步</a>
+                <a href="javascript:starBegain();" class="weui-btn weui-btn_primary order-btn">开始充电</a>
                 <div class="weui-panel__hd errmsg" style="display: none"><font color="red">移动信号太差，建议设备移到信号的区域</font>
                 </div>
             </div>
@@ -223,13 +224,13 @@
         $('.cdsc').removeClass('on');
         $(this).addClass('on');
         $('.package_name').text($(this).text());
-        $('input[name="package_id"]').val($(this).attr('data-id'));
+        $('input[name="chargeRank"]').val($(this).attr('data-id'));
     });
 
     //获取充电信息
     $(function () {
         checkStatus();
-    })
+    });
 
     function checkStatus() {
         $.ajax({
@@ -309,17 +310,17 @@
                 var statusStr = "";
                 var statusStrclass = "";
                 if (pileInfo.state == 1) {
-                    statusStr = "通道开启";
+                    statusStr = "使用中";
                 } else {
-                    statusStr = "通道关闭";
+                    statusStr = "空闲";
                     statusStrclass = "";
                 }
                 var pileHtml = ""
                     + "<a href=\"javascript:;\" class=\"weui-grid cdk " + statusStrclass + "\">"
+                    + "<p class=\"weui-grid__label\">" + pileInfo.path + "</p>"
                     + "<div class=\"weui-grid__icon\">"
                     + "<img src=\"<%=path%>/wx/img/charge/gunConnect_normal.png\" alt=\"\">"
                     + "</div>"
-                    + "<p class=\"weui-grid__label\">" + pileInfo.path + "口</p>"
                     + "<div class=\"weui-grid__label\">" + statusStr + "</div>"
                     + "</a>";
                 var element = $(pileHtml);
@@ -339,6 +340,7 @@
 
     function starBegain() {
         var tempSelect = $('.on p').text();
+        var chargeRank = $('#chargeRank').val();
         var select;
         if (tempSelect.length != 0 && tempSelect != "") {
             select = tempSelect.substring(0, tempSelect.length - 1);
@@ -356,6 +358,7 @@
                 "deviceSn": "${deviceSn}",
                 "path": select,
                 "url": "/min/charge/command/start",
+                "chargeRank": chargeRank
             },
 
             success: function (data) {
@@ -397,7 +400,7 @@
 
     }
 
-    $('#showPicker').on('click', function (res) {
+    /*$('#showPicker').on('click', function (res) {
         weui.picker([{
                 label: Number(priceNumberStr / 2).toFixed(2) + '元30分',
                 value: '30'
@@ -438,6 +441,6 @@
                     //console.log(result[0]);
                 }
             });
-    });
+    });*/
 
 </script>

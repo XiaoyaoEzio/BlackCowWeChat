@@ -1,9 +1,9 @@
 package com.idbk.chargestation.wechat.app;
 
+import com.idbk.chargestation.wechat.AppConfig;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import com.idbk.chargestation.wechat.AppConfig;
 
 /**
  * 应用程序级别的启动<br/>

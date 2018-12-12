@@ -1,18 +1,16 @@
 package com.idbk.chargestation.wechat.springmvc;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.idbk.chargestation.wechat.WeChat;
+import com.idbk.chargestation.wechat.WxConfig;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.idbk.chargestation.wechat.WeChat;
-import com.idbk.chargestation.wechat.WxConfig;
+import javax.servlet.http.HttpServletRequest;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  * 微信充值
@@ -20,7 +18,7 @@ import com.idbk.chargestation.wechat.WxConfig;
  *
  */
 @Controller
-@RequestMapping("/wx")
+@RequestMapping("/spring/wx")
 public class WxPay extends BaseControler {
 
 	private static final Logger LOG = Logger.getLogger(WxPay.class);

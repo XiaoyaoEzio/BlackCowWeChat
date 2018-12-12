@@ -1,9 +1,9 @@
 package com.idbk.chargestation.wechat.util;
 
+import org.apache.log4j.Logger;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import org.apache.log4j.Logger;
 
 public class MySHA1 {
 	
@@ -15,14 +15,14 @@ public class MySHA1 {
 			digest.update(decript.getBytes());  
 			byte messageDigest[] = digest.digest();  
 			// Create Hex String  
-			StringBuffer hexString = new StringBuffer();  
+			StringBuilder hexString = new StringBuilder();
 			// 字节数组转换为 十六进制 数  
-			for (int i = 0; i < messageDigest.length; i++) {  
-				String shaHex = Integer.toHexString(messageDigest[i] & 0xFF);  
-				if (shaHex.length() < 2) {  
-					hexString.append(0);  
-				}  
-				hexString.append(shaHex);  
+			for (byte aMessageDigest : messageDigest) {
+				String shaHex = Integer.toHexString(aMessageDigest & 0xFF);
+				if (shaHex.length() < 2) {
+					hexString.append(0);
+				}
+				hexString.append(shaHex);
 			}  
 			return hexString.toString();  
 

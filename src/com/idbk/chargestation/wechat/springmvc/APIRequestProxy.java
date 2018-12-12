@@ -25,7 +25,7 @@ import java.util.List;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/spring")
 public class APIRequestProxy extends BaseControler {
 
 	private static final Logger LOG = Logger.getLogger(APIRequestProxy.class);	

@@ -30,6 +30,7 @@ import com.idbk.chargestation.wechat.util.MyDES;
  *
  */
 @Controller
+@RequestMapping("/spring")
 public class Login extends BaseControler {
 
 	private static final Logger LOG = Logger.getLogger(Login.class);

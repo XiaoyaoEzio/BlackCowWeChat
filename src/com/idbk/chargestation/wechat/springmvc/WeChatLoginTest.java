@@ -1,19 +1,17 @@
 package com.idbk.chargestation.wechat.springmvc;
 
-import java.io.IOException;
-import java.net.URLEncoder;
+import com.idbk.chargestation.wechat.AppConfig;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 
-import org.apache.log4j.Logger;
-
-import com.idbk.chargestation.wechat.AppConfig;
-
-@WebServlet("/weChatLogin")
+@WebServlet("/spring/weChatLogin")
 public class WeChatLoginTest  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(WeChatLoginTest.class);

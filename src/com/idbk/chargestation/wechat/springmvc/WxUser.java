@@ -1,22 +1,20 @@
 package com.idbk.chargestation.wechat.springmvc;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.idbk.chargestation.wechat.AppConfig;
+import com.idbk.chargestation.wechat.LoginCache;
+import com.idbk.chargestation.wechat.json.JsonWxUserInfo;
+import com.idbk.chargestation.wechat.json.ProxyJsonLogin;
 import okhttp3.Request;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.idbk.chargestation.wechat.AppConfig;
-import com.idbk.chargestation.wechat.LoginCache;
-import com.idbk.chargestation.wechat.json.JsonWxUserInfo;
-import com.idbk.chargestation.wechat.json.ProxyJsonLogin;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/wx")
+@RequestMapping("/spring/wx")
 public class WxUser extends BaseControler {
 
 	private static final Logger LOG = Logger.getLogger(WxUser.class);

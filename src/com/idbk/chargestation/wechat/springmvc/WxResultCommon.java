@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  */
 @Controller
-@RequestMapping("/wx/result")
+@RequestMapping("/spring/wx/result")
 public class WxResultCommon {
 
 	private static final Logger LOG = Logger.getLogger(WxResultCommon.class);

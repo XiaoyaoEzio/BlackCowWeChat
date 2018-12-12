@@ -42,7 +42,7 @@ import freemarker.template.TemplateExceptionHandler;
  *
  */
 @Controller
-@RequestMapping("/notify")
+@RequestMapping("/spring/notify")
 public class MyNotify extends BaseControler {
 
 	private static final Logger LOG = Logger.getLogger(MyNotify.class);	

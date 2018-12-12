@@ -120,9 +120,7 @@ public class chargeModelView extends BaseControler {
         return m.replaceAll("").trim();
     }
 
-    public String login(
-            HttpServletRequest req,
-            @RequestParam(value = "openId", required = true) String openId) {
+    private String login(HttpServletRequest req, String openId) {
         //基本的输入验证
         String result = "";
 

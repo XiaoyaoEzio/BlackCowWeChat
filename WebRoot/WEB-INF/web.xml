@@ -3,9 +3,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <display-name></display-name>
-    <listener>
-        <listener-class>com.idbk.chargestation.wechat.app.ApplicationListener</listener-class>
-    </listener>
+
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -83,6 +81,15 @@
     <welcome-file-list>
         <welcome-file>wechat</welcome-file>
     </welcome-file-list>
+
+    <listener>
+        <listener-class>com.idbk.chargestation.wechat.app.ApplicationListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:springmvc.xml</param-value>
+    </context-param>
+
 
     <session-config>
         <session-timeout>178</session-timeout>

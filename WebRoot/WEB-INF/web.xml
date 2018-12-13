@@ -41,7 +41,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springDispatcherServlet</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -94,6 +94,7 @@
     <session-config>
         <session-timeout>178</session-timeout>
     </session-config>
+
     <error-page>
         <error-code>404</error-code>
         <location>/jsp/other/404.jsp</location>

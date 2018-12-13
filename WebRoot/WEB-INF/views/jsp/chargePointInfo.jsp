@@ -263,7 +263,7 @@
                 } else {
                     weui.topTips(data.msg, 2000);
                     $(".online_status").text("设备离线");
-                    $(".online_status").attr("style", "color:#e64340");
+                    $(".online_status").attr("style", "color:#e64340"); 
                     checkStatus();
                 }
 
@@ -330,11 +330,10 @@
 
 
         $('.cdk').click(function () {
-            $('.cdk').removeClass('on')
+            $('.cdk').removeClass('on');
             $('.cdk img').attr('src', '<%=path%>/wx/img/charge/gunConnect_normal.png');
             $(this).addClass('on');
             $(this).find('img').attr('src', '<%=path%>/wx/img/charge/gunConnect_active.png');
-            ;
         });
     }
 

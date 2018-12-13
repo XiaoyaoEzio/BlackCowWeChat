@@ -1,6 +1,7 @@
 package com.idbk.chargestation.wechat;
 
 import org.apache.log4j.Logger;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +55,7 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         if (session == null) {//跳转授权
+            LOG.debug("无 session");
             redirectToAuthorizeView(request, response);
             return;
         } else {
@@ -95,6 +97,16 @@ public class LoginFilter implements Filter {
         String fromURI = request.getRequestURI();
         LOG.debug("fromURT: " + fromURI);
 
+        String state;
+        if (!StringUtils.isEmpty(fromURI) && fromURI.contains("user")) {
+            state = "1";
+        } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("capture")) {
+            state = "2";
+        } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("map")) {
+            state = "3";
+        } else {
+            state = "0";
+        }
         String fromFullURI = AppConfig.DOMAIN + request.getContextPath() + "/spring/wx/weChatAuthorized";
         LOG.info("fromFullURI:" + fromFullURI);
         //微信授权路径
@@ -103,7 +115,7 @@ public class LoginFilter implements Filter {
                 + "&redirect_uri=" + URLEncoder.encode(fromFullURI, "utf-8")
                 + "&response_type=code"
                 + "&scope=snsapi_userinfo"
-                + "&state=STATE#wechat_redirect";
+                + "&state=" + state + "#wechat_redirect";
         response.sendRedirect(weChatAuthorizedURI);
     }
 

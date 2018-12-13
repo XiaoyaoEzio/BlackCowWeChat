@@ -105,9 +105,25 @@ public class chargeModelView extends BaseControler {
             // TODO: handle exception
             return "common/failed";
         }
+
+        switch (Integer.parseInt(state)) {
+            case 0:
+            case 1:
+                tmp = "/jsp/user.jsp";
+                break;
+            case 2:
+                tmp = "/jsp/capture.jsp";
+                break;
+            case 3:
+                tmp = "/jsp/map.jsp";
+                break;
+            default:
+                tmp = "/jsp/map.jsp";
+        }
+
         map.put("locationUrl", tmp);
 
-        return "jsp/user";
+        return "jsp/back";
     }
 
     //使用此特殊符号过滤有个bug ，当昵称中只有特殊符号时，返回为"" 存入数据库异常

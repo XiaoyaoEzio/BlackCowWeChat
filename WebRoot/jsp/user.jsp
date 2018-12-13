@@ -246,8 +246,12 @@
         HttpSession tempSession = request.getSession(false);
         Object obj = tempSession.getAttribute(AppConfig.KEY_USER_CACHE);
         LoginCache lc = (LoginCache)obj;
+        String userRole = "";
+        if (lc != null) {
+            userRole = lc.getUserRole();
+        }
     %>
-    var wxHeadImgURL = "<%= lc.getUserRole() %>";
+    var wxHeadImgURL = "<%=userRole %>";
 
     function loadWxHeadImg() {
         //如果用户已经绑定Openid

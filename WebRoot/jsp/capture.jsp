@@ -29,8 +29,8 @@
 <body ontouchstart>
 <div class="page__bd" style="height: 100%;">
     <div class="weui-tab">
-
-        <jsp:include page="include/tabbar.jsp"></jsp:include>
+        <%@ include file="include/tabbar.jsp"%>
+        <%--<jsp:include page="include/tabbar.jsp"></jsp:include>--%>
     </div>
 </div>
 

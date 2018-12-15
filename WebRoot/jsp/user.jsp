@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <jsp:include page="include/tabbar.jsp"></jsp:include>
+            <%@ include file="include/tabbar.jsp"%>
         </div>
     </div>
 </div>

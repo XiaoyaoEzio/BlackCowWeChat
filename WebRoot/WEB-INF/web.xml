@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-    <display-name></display-name>
+    <display-name>BlackCowWeChat</display-name>
 
 
     <servlet-mapping>
@@ -61,6 +61,7 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/spring/wx/charge</url-pattern>
     </filter-mapping>
+
     <!--<filter-mapping>
         <filter-name>WxAuthFilter</filter-name>
         <url-pattern>/*</url-pattern>

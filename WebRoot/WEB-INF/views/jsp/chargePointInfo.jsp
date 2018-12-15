@@ -186,14 +186,17 @@
                 </ul>
             </div>
             <div class="weui-grids2" style="margin-top: 8px;">
+                <a href="javascript:;" class="weui-grid2 cdsc " data-id="0" id="chargeRank0">4小时</a>
                 <a href="javascript:;" class="weui-grid2 cdsc " data-id="1" id="chargeRank1">4小时</a>
                 <a href="javascript:;" class="weui-grid2 cdsc on" data-id="2" id="chargeRank2">6小时</a>
                 <a href="javascript:;" class="weui-grid2 cdsc" data-id="3" id="chargeRank3">8小时</a>
-                <a href="javascript:;" class="weui-grid2 cdsc" data-id="4" id="chargeRank4">自动充满</a>
+                <%--<a href="javascript:;" class="weui-grid2 cdsc" data-id="4" id="chargeRank4">自动充满</a>--%>
+
                 <div style="clear: both"></div>
             </div>
             <div class="page__bd" style="text-align: center; margin-top: 16px;">
-                <a href="javascript:starBegain();" class="weui-btn weui-btn_primary order-btn">开始充电</a>
+                <a href="javascript:void(0);" onclick="starBegain()" class="weui-btn weui-btn_primary order-btn">开始充电
+                </a>
                 <div class="weui-panel__hd errmsg" style="display: none"><font color="red">移动信号太差，建议设备移到信号的区域</font>
                 </div>
             </div>
@@ -275,7 +278,7 @@
                     msg: "系统繁忙，请稍后重试",
                     url: "<%=path%>/spring/charge/scanqr",
                     link: "false"
-                }
+                };
                 localStorage.setItem("EAST_errorMsg", JSON.stringify(msg));
                 window.location.href = "<%=path%>/spring/errorMsg";
 
@@ -340,10 +343,7 @@
     function starBegain() {
         var tempSelect = $('.on p').text();
         var chargeRank = $('#chargeRank').val();
-        var select;
-        if (tempSelect.length != 0 && tempSelect != "") {
-            select = tempSelect.substring(0, tempSelect.length - 1);
-        } else {
+        if (tempSelect.length === 0 && tempSelect === "") {
             weui.topTips("请选择需要开启的充电口", 2000);
             return;
         }
@@ -355,7 +355,7 @@
             url: "<%=path%>/spring/proxy",
             data: {
                 "deviceSn": "${deviceSn}",
-                "path": select,
+                "path": tempSelect,
                 "url": "/min/charge/command/start",
                 "chargeRank": chargeRank
             },

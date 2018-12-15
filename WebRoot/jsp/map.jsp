@@ -72,8 +72,8 @@
             </div>
             
         </div>
-        <jsp:include page="include/tabbar.jsp"></jsp:include>
-    </div>  
+        <%@ include file="include/tabbar.jsp"%>
+    </div>
          
     <script type="text/javascript">
     

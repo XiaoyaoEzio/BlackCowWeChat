@@ -97,6 +97,7 @@ public class LoginFilter implements Filter {
         String fromURI = request.getRequestURI();
         LOG.debug("fromURT: " + fromURI);
 
+        String deviceSn = request.getParameter("deviceSn");
         String state;
         if (!StringUtils.isEmpty(fromURI) && fromURI.contains("user")) {
             state = "1";
@@ -104,6 +105,8 @@ public class LoginFilter implements Filter {
             state = "2";
         } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("map")) {
             state = "3";
+        } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("chargePointInfo")){
+            state = deviceSn;
         } else {
             state = "0";
         }

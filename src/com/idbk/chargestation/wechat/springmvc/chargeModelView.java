@@ -106,6 +106,12 @@ public class chargeModelView extends BaseControler {
             return "common/failed";
         }
 
+        // 长度大于2说明是deviceSn
+        if  (state.length() > 2) {
+            map.put("deviceSn", state);
+            return "jsp/chargePointInfo";
+        }
+
         switch (Integer.parseInt(state)) {
             case 0:
             case 1:
@@ -118,7 +124,6 @@ public class chargeModelView extends BaseControler {
                 tmp = "/jsp/map.jsp";
                 break;
             default:
-                tmp = "/jsp/map.jsp";
         }
 
         map.put("locationUrl", tmp);

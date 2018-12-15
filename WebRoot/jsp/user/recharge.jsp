@@ -57,7 +57,7 @@
                 <span class="weui-icon-checked"></span>
             </div>
         </label>
-        <label class="weui-cell weui-check__label" for="x15">
+        <%--<label class="weui-cell weui-check__label" for="x15">
             <div class="weui-cell__bd">
                 <p>自定义</p>
             </div>
@@ -65,17 +65,19 @@
                 <input type="radio" name="radio1" class="weui-check" id="x15">
                 <span class="weui-icon-checked"></span>
             </div>
-        </label>        
+        </label>  --%>
     </div>
     
-    <div class="weui-cells__title">充值金额（元）</div>
+    <%--<div class="weui-cells__title">充值金额（元）</div>
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <input id="input_money" class="weui-input" type="number" placeholder="实际金额" value="20" maxlength="7" disabled="disabled">
             </div>
         </div>
-    </div>
+    </div>--%>
+    <input id="input_money" class="weui-input" type="hidden" placeholder="实际金额" value="20" maxlength="7"
+           disabled="disabled">
     
     <div class="weui-btn-area">
     	<a href="javascript:;" class="weui-btn weui-btn_primary">微信充值</a>
@@ -126,7 +128,7 @@
 		
         $('.weui-btn.weui-btn_primary').on('click',function(e){        	
         	var val = $("#input_money").val();
-        	if(checkInput(val)){        		
+        	if(checkInput(val)){
         		wxPay(val);
         	}
         });

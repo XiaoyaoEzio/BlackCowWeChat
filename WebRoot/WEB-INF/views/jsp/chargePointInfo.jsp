@@ -143,19 +143,23 @@
         <!--// 充电BLOCK-->
         <div class="page__bd result_block" style="display: none">
             <div class="page__bd" style="text-align: center; margin-top: 8px;">
-                <a href="javascript:;" class="weui-btn weui-btn_primary back_block" style="width: 80%; background: #ffcc66; font-size: 13px; height: 32px; line-height: 33px;">返回上一页</a>
+                <a href="javascript:;" class="weui-btn weui-btn_primary back_block"
+                   style="width: 80%; background: #ffcc66; font-size: 13px; height: 32px; line-height: 33px;">返回上一页</a>
                 <div style="clear:both"></div>
 
             </div>
 
             <div class="page__bd" style="text-align: center; margin-top: 8px;">
 
-                <a href="javascript:;" class="weui-btn weui-btn_primary start_block" style="width: 80%; background: #ffcc66; font-size: 13px; height: 32px; line-height: 32px;">正在启动</a>
+                <a href="javascript:;" class="weui-btn weui-btn_primary start_block"
+                   style="width: 80%; background: #ffcc66; font-size: 13px; height: 32px; line-height: 32px;">正在启动</a>
                 <div class="weui-cells__title">费用</div>
-                <a href="javascript:;" class="weui-btn weui-btn_primary" style="width: 80%; background: #ffcc66; font-size: 13px; line-height: 18px; padding: 8px 0;">购买套餐<br/>
+                <a href="javascript:;" class="weui-btn weui-btn_primary"
+                   style="width: 80%; background: #ffcc66; font-size: 13px; line-height: 18px; padding: 8px 0;">购买套餐<br/>
                     <span class="package_name">2元30分</span>
                 </a>
-                <div class="page__bd" style="text-align: left; padding-left: 8px; font-size: 12px; line-height: 20px; margin-top: 8px;">
+                <div class="page__bd"
+                     style="text-align: left; padding-left: 8px; font-size: 12px; line-height: 20px; margin-top: 8px;">
                     <div class="weui-cells__title"><font color="#f1a225">电站：</font></div>
                 </div>
             </div>
@@ -186,7 +190,7 @@
                 </ul>
             </div>
             <div class="weui-grids2" style="margin-top: 8px;">
-                <a href="javascript:;" class="weui-grid2 cdsc " data-id="0" id="chargeRank0">4小时</a>
+                <a href="javascript:;" class="weui-grid2 cdsc " data-id="0" id="chargeRank0">2小时</a>
                 <a href="javascript:;" class="weui-grid2 cdsc " data-id="1" id="chargeRank1">4小时</a>
                 <a href="javascript:;" class="weui-grid2 cdsc on" data-id="2" id="chargeRank2">6小时</a>
                 <a href="javascript:;" class="weui-grid2 cdsc" data-id="3" id="chargeRank3">8小时</a>
@@ -266,7 +270,7 @@
                 } else {
                     weui.topTips(data.msg, 2000);
                     $(".online_status").text("设备离线");
-                    $(".online_status").attr("style", "color:#e64340"); 
+                    $(".online_status").attr("style", "color:#e64340");
                     checkStatus();
                 }
 
@@ -306,6 +310,13 @@
 
         $(".chargeName").text(reqData.data.deviceName);
 
+        /*var rankList = [2, 4, 6, 8];
+        for (var i = 0; i < 4; i++)
+        {
+            var rank = rankList[i];
+            $("#chargeRank" + i).text(priceNumberStr * rank + " 元 " + rank + " 小时");
+        }*/
+
         if (reqData.data.pathTotal > 0) {
             $(".pileList").empty();
             for (var i = 0; i < reqData.data.path_state.length; i++) {
@@ -343,8 +354,9 @@
     function starBegain() {
         var tempSelect = $('.on p').text();
         var chargeRank = $('#chargeRank').val();
-        if (tempSelect.length === 0 && tempSelect === "") {
-            weui.topTips("请选择需要开启的充电口", 2000);
+
+        if (!tempSelect) {
+            weui.alert('请选择需要开启的充电口');
             return;
         }
 
@@ -361,12 +373,29 @@
             },
 
             success: function (data) {
-                if (data.status == 10000) {//token失效
+
+                if (data.status === 10000) {//token失效
                     window.location.reload();//强制刷新进入登陆界面
-                    return;
-                }
-                console.log(data);
-                if (data.status == 0) {//开启成功
+                } else if (data.status === 10013) {
+                    // 余额不足
+                    weui.confirm('余额不足，是否前往充值？', {
+                        title: '温馨提示',
+                        buttons: [{
+                            label: '取消',
+                            type: 'default',
+                            onClick: function () {
+
+                            }
+                        }, {
+                            label: '前往',
+                            type: 'primary',
+                            onClick: function () {
+                                window.location.replace("<%=path%>/jsp/user/recharge.jsp");
+                            }
+                        }]
+                    });
+
+                } else if (data.status === 0) {//开启成功
                     weui.toast('开启成功', {
                         duration: 1000,
                         className: 'custom-classname',

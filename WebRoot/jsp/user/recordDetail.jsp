@@ -139,7 +139,11 @@
 		contain.append(createItem("交易流水号",data.tradingSn));
 		contain.append(createItem("设备名",data.deviceName));
 		contain.append(createItem("设备序号","#" + data.deviceSn));
-		contain.append(createItem("充电时长",data.chargeTime + "分钟"));
+		var chargeTime = data.chargeTime;
+		if (chargeTime < 1) {
+		    chargeTime = "不足 1 ";
+        }
+		contain.append(createItem("充电时长",chargeTime + "分钟"));
 		contain.append(createItem("充电开始",data.startTime));
 		contain.append(createItem("充电结束",data.stopTime));
 		contain.append(createItem("通道",data.path + "口"));

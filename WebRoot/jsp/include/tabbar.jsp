@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
+<%--<%
 	String path = request.getContextPath();
-%>	
+%>--%>
 	 <div id="tabbar" class="weui-tabbar footer-in">
          <a href="javascript:;" class="weui-tabbar__item footer-link">
             <i class="iconfont icon-shandian footer-icon"></i>

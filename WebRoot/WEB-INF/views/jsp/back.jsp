@@ -3,7 +3,7 @@
 <%@ page import="com.idbk.chargestation.wechat.*" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 
 %>
 <!DOCTYPE html>

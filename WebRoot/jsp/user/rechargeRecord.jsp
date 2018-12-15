@@ -34,8 +34,8 @@
      -->
     
     <!-- 包含表格模块 -->
-    <jsp:include page="../include/list.jsp"></jsp:include>
- 
+    <%--<jsp:include page="../include/list.jsp"></jsp:include>--%>
+    <%@ include file="../include/list.jsp"%>
 <script type="text/javascript">
 	
 	$(function(){		

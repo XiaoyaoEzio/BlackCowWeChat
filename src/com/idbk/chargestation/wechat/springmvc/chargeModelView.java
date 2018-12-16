@@ -102,7 +102,7 @@ public class chargeModelView extends BaseControler {
             }
 
         } catch (Exception e) {
-            // TODO: handle exception
+            LOG.error(e.getMessage());
             return "common/failed";
         }
 

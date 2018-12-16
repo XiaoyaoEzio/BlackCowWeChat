@@ -66,6 +66,7 @@ public class LoginFilter implements Filter {
             Object obj = session.getAttribute(AppConfig.KEY_USER_CACHE);
             if (obj == null) {
                 redirectToAuthorizeView(request, response);
+                return;
             } else {
                 if (obj instanceof LoginCache) {
                     LoginCache cache = (LoginCache) obj;
@@ -87,7 +88,7 @@ public class LoginFilter implements Filter {
             }
         }
         //到这里表示 该页面不需要登录即可访问
-        chain.doFilter(request, response);
+        //chain.doFilter(request, response);
         return;
 
     }
@@ -97,7 +98,7 @@ public class LoginFilter implements Filter {
         String fromURI = request.getRequestURI();
         LOG.debug("fromURT: " + fromURI);
 
-        String deviceSn = request.getParameter("deviceSn");
+        String deviceSn = request.getParameter("qrcodeResult");
         String state;
         if (!StringUtils.isEmpty(fromURI) && fromURI.contains("user")) {
             state = "1";
@@ -105,7 +106,7 @@ public class LoginFilter implements Filter {
             state = "2";
         } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("map")) {
             state = "3";
-        } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("chargePointInfo")){
+        } else if (!StringUtils.isEmpty(fromURI) && fromURI.contains("/spring/wx/charge")){
             state = deviceSn;
         } else {
             state = "0";

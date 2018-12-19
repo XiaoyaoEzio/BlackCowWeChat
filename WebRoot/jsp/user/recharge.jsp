@@ -16,14 +16,29 @@
     <script type="text/javascript" src="http://mat1.gtimg.com/libs/zepto/1.1.6/zepto.min.js"></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+    <style type="text/css">
+        .sendMoney {
+            font-size: 12px;
+            color: red;
+        }
+    </style>
 </head>
 <body ontouchstart>
 
 	<div class="weui-cells__title">选择金额</div>
 	<div class="weui-cells weui-cells_radio">
+        <label class="weui-cell weui-check__label" for="x10">
+            <div class="weui-cell__bd">
+                <p>2元</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input type="radio" class="weui-check" name="radio1" id="x10" checked="checked">
+                <span class="weui-icon-checked"></span>
+            </div>
+        </label>
         <label class="weui-cell weui-check__label" for="x11">
             <div class="weui-cell__bd">
-                <p>10元</p>
+                <p>20元<span class="sendMoney">（赠送1元）</span></p>
             </div>
             <div class="weui-cell__ft">
                 <input type="radio" class="weui-check" name="radio1" id="x11">
@@ -32,16 +47,16 @@
         </label>
         <label class="weui-cell weui-check__label" for="x12">
             <div class="weui-cell__bd">
-                <p>20元</p>
+                <p>50元<span class="sendMoney">（赠送3元）</span></p>
             </div>
             <div class="weui-cell__ft">
-                <input type="radio" name="radio1" class="weui-check" id="x12" checked="checked">
+                <input type="radio" name="radio1" class="weui-check" id="x12" >
                 <span class="weui-icon-checked"></span>
             </div>
         </label>
         <label class="weui-cell weui-check__label" for="x13">
             <div class="weui-cell__bd">
-                <p>30元</p>
+                <p>100元<span class="sendMoney">（赠送7元）</span></p>
             </div>
             <div class="weui-cell__ft">
                 <input type="radio" name="radio1" class="weui-check" id="x13">
@@ -50,7 +65,7 @@
         </label>
         <label class="weui-cell weui-check__label" for="x14">
             <div class="weui-cell__bd">
-                <p>50元</p>
+                <p>200元<span class="sendMoney">（赠送16元）</span></p>
             </div>
             <div class="weui-cell__ft">
                 <input type="radio" name="radio1" class="weui-check" id="x14">
@@ -76,7 +91,7 @@
             </div>
         </div>
     </div>--%>
-    <input id="input_money" class="weui-input" type="hidden" placeholder="实际金额" value="20" maxlength="7"
+    <input id="input_money" class="weui-input" type="hidden" placeholder="实际金额" value="2" maxlength="7"
            disabled="disabled">
     
     <div class="weui-btn-area">
@@ -106,7 +121,7 @@
 		wx.hideAllNonBaseMenuItem();
 	});
 
-	var money = [10,20,30,50,""];
+	var money = [2,20,50,100,200,""];
 
 	$(function(){			
 		$('input[type=radio]').on('change',function(e){
@@ -115,7 +130,7 @@
 				if($(value).is(':checked')){
 					var input = $("#input_money"); 
 					input.val(money[index]);
-					if(index==4){
+					if(index==6){
 						input.removeAttr("disabled");
 						input.focus();
 					} else {
@@ -156,7 +171,7 @@
 		var money = val;
 		var appid = '<%=AppConfig.APP_ID%>';//微信开放平台appid
 		//state保存用户名和充值金额
-    	var state = money + "|-1";;
+    	var state = money + "|-1";
     	var redirect_uri = encodeURIComponent("<%=AppConfig.DOMAIN%><%=path%>/spring/wx/prepay");
     	var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid +"&redirect_uri=" + redirect_uri;
     	url += "&response_type=code&scope=snsapi_base&state="+state+"#wechat_redirect";

@@ -206,11 +206,11 @@
 
             + "</a>"
             + "</div>"
-            /*+ "<div class=\"page__bd\" style=\"text-align: center; margin-top: 16px;\">"
+            + "<div class=\"page__bd\" style=\"text-align: center; margin-top: 16px;\">"
             + "<a href=\"javascript:stopCharge();\" class=\"weui-btn weui-btn_primary order-btn\">结束充电"
             + "</a>"
 
-            + "</div>"*/;
+            + "</div>";
 
         $(".bodyContent").append(chargeItemHtml);
         chargeRefesh();

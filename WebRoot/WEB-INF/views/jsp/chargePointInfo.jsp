@@ -360,71 +360,80 @@
             return;
         }
 
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            cache: false,
-            url: "<%=path%>/spring/proxy",
-            data: {
-                "deviceSn": "${deviceSn}",
-                "path": tempSelect,
-                "url": "/min/charge/command/start",
-                "chargeRank": chargeRank
-            },
+        weui.confirm('开始充电前请确保您的充电器插头已插好', {
+            buttons: [{
+                label: '确定',
+                type: 'primary',
+                onClick: function () {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        cache: false,
+                        url: "<%=path%>/spring/proxy",
+                        data: {
+                            "deviceSn": "${deviceSn}",
+                            "path": tempSelect,
+                            "url": "/min/charge/command/start",
+                            "chargeRank": chargeRank
+                        },
 
-            success: function (data) {
+                        success: function (data) {
 
-                if (data.status === 10000) {//token失效
-                    window.location.reload();//强制刷新进入登陆界面
-                } else if (data.status === 10013) {
-                    // 余额不足
-                    weui.confirm('余额不足，是否前往充值？', {
-                        title: '温馨提示',
-                        buttons: [{
-                            label: '取消',
-                            type: 'default',
-                            onClick: function () {
+                            if (data.status === 10000) {//token失效
+                                window.location.reload();//强制刷新进入登陆界面
+                            } else if (data.status === 10013) {
+                                // 余额不足
+                                weui.confirm('余额不足，是否前往充值？', {
+                                    title: '温馨提示',
+                                    buttons: [{
+                                        label: '取消',
+                                        type: 'default',
+                                        onClick: function () {
 
+                                        }
+                                    }, {
+                                        label: '前往',
+                                        type: 'primary',
+                                        onClick: function () {
+                                            window.location.replace("<%=path%>/jsp/user/recharge.jsp");
+                                        }
+                                    }]
+                                });
+
+                            } else if (data.status === 0) {//开启成功
+                                weui.toast('开启成功', {
+                                    duration: 1000,
+                                    className: 'custom-classname',
+                                    callback: function () {
+                                        location.replace("<%=path%>/jsp/myChargeList.jsp");
+                                    }
+                                });
+                            } else {
+                                weui.topTips(data.msg, 2000);
                             }
-                        }, {
-                            label: '前往',
-                            type: 'primary',
-                            onClick: function () {
-                                window.location.replace("<%=path%>/jsp/user/recharge.jsp");
-                            }
-                        }]
-                    });
 
-                } else if (data.status === 0) {//开启成功
-                    weui.toast('开启成功', {
-                        duration: 1000,
-                        className: 'custom-classname',
-                        callback: function () {
-                            location.replace("<%=path%>/jsp/myChargeList.jsp");
+                        },
+                        error: function (Error) {
+                            console.log(Error);
+                            /* loading.hide(); */
+                            var msg = {
+                                msg: "系统繁忙，请稍后重试",
+                                url: "<%=path%>/spring/charge/scanqr",
+                                link: "false"
+                            }
+                            localStorage.setItem("EAST_errorMsg", JSON.stringify(msg));
+                            window.location.href = "<%=path%>/spring/errorMsg";
+
+                        },
+                        complete: function () {
+                            console.log("完成检测当前用户是否有充电完成请求");
+
                         }
-                    });
-                } else {
-                    weui.topTips(data.msg, 2000);
+                    })
                 }
+            }]
+        });
 
-            },
-            error: function (Error) {
-                console.log(Error);
-                /* loading.hide(); */
-                var msg = {
-                    msg: "系统繁忙，请稍后重试",
-                    url: "<%=path%>/spring/charge/scanqr",
-                    link: "false"
-                }
-                localStorage.setItem("EAST_errorMsg", JSON.stringify(msg));
-                window.location.href = "<%=path%>/spring/errorMsg";
-
-            },
-            complete: function () {
-                console.log("完成检测当前用户是否有充电完成请求");
-
-            }
-        })
 
     }
 

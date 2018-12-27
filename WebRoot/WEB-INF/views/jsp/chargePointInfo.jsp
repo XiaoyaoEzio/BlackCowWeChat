@@ -131,6 +131,21 @@
 
 </head>
 <body ontouchstart>
+<div class="" id="aaa1" style="display: none;">
+    <div class="weui-mask weui-animate-fade-in"></div>
+    <div class="weui-dialog weui-animate-fade-in">
+        <div class="weui-dialog__hd">
+            <strong class="weui-dialog__title">温馨提示</strong>
+        </div>
+        <div class="weui-dialog__bd">余额不足，是否前往充值？</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" onclick="(function() {
+              window.location.replace('<%=path%>/jsp/user/recharge.jsp');
+            })()">前往</a>
+        </div>
+    </div>
+</div>
 <div class="weui-toptips weui-toptips_warn js_tooltips">错误提示</div>
 <div class="container" id="container">
     <div class="page" style="opacity: 100">
@@ -323,15 +338,17 @@
                 var pileInfo = reqData.data.path_state[i];
                 var statusStr = "";
                 var statusStrclass = "";
+                var flag = 0;
                 if (pileInfo.state == 1) {
-                    statusStr = "使用中";
+                    statusStr = "<span style='color: red'>使用中</scan>";
+                    statusStrclass = "style='pointer-events: none'";
                 } else {
                     statusStr = "空闲";
                     statusStrclass = "";
                 }
                 var pileHtml = ""
-                    + "<a href=\"javascript:;\" class=\"weui-grid cdk " + statusStrclass + "\">"
-                    + "<p class=\"weui-grid__label\">" + pileInfo.path + "</p>"
+                    + "<a href='javascript:;' class='weui-grid cdk' " + statusStrclass + ">"
+                    + "<p class='weui-grid__label'>" + pileInfo.path + "</p>"
                     + "<div class=\"weui-grid__icon\">"
                     + "<img src=\"<%=path%>/wx/img/charge/gunConnect_normal.png\" alt=\"\">"
                     + "</div>"
@@ -344,6 +361,7 @@
 
 
         $('.cdk').click(function () {
+
             $('.cdk').removeClass('on');
             $('.cdk img').attr('src', '<%=path%>/wx/img/charge/gunConnect_normal.png');
             $(this).addClass('on');
@@ -360,11 +378,13 @@
             return;
         }
 
-        weui.confirm('开始充电前请确保您的充电器插头已插好', {
+
+        var confirm = weui.confirm('开始充电前请确保您的充电器插头已插好', {
             buttons: [{
                 label: '确定',
                 type: 'primary',
                 onClick: function () {
+                    confirm.hide();
                     $.ajax({
                         type: "POST",
                         dataType: "json",
@@ -378,28 +398,31 @@
                         },
 
                         success: function (data) {
-
                             if (data.status === 10000) {//token失效
                                 window.location.reload();//强制刷新进入登陆界面
                             } else if (data.status === 10013) {
+                                $("#aaa1").show();
                                 // 余额不足
-                                weui.confirm('余额不足，是否前往充值？', {
-                                    title: '温馨提示',
-                                    buttons: [{
-                                        label: '取消',
-                                        type: 'default',
-                                        onClick: function () {
+                                <%--weui.confirm('余额不足，是否前往充值？', {--%>
+                                    <%--title: '温馨提示',--%>
+                                    <%--buttons: [{--%>
+                                        <%--label: '取消',--%>
+                                        <%--type: 'default',--%>
+                                        <%--onClick: function () {--%>
 
-                                        }
-                                    }, {
-                                        label: '前往',
-                                        type: 'primary',
-                                        onClick: function () {
-                                            window.location.replace("<%=path%>/jsp/user/recharge.jsp");
-                                        }
-                                    }]
-                                });
+                                        <%--}--%>
+                                    <%--}, {--%>
+                                        <%--label: '前往',--%>
+                                        <%--type: 'primary',--%>
+                                        <%--onClick: function () {--%>
+                                            <%--window.location.replace("<%=path%>/jsp/user/recharge.jsp");--%>
+                                        <%--}--%>
+                                    <%--}]--%>
+                                <%--});--%>
 
+                                if (go == true) {
+                                    window.location.replace("<%=path%>/jsp/user/recharge.jsp");
+                                }
                             } else if (data.status === 0) {//开启成功
                                 weui.toast('开启成功', {
                                     duration: 1000,
@@ -433,7 +456,6 @@
                 }
             }]
         });
-
 
     }
 

@@ -92,10 +92,11 @@
                 if (req.status == 0) {
                     initChargeListView(req.data);
                 } else {
-                    if  (data.status == 20007) {
-                        $(".bodyContent").append("您当前未充电");
+                    if  (req.status == 20007) {
+                        $(".bodyContent").append("<h2 align='center' class=\"weui-msg__title\" id=\"textValue\">您当前未充电</h2>");
+                        return;
                     }
-                    if (data.status == 10000) {
+                    if (req.status == 10000) {
                         window.location.replace = "<%=AppConfig.DOMAIN%><%=path%>/weChatLogin?tmp=jsp/myChargeList.jsp";
                         return;
                     }

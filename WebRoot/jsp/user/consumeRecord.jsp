@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>充值记录</title>
+    <title>消费记录</title>
     <link rel="stylesheet" href="../../wx/css/mywx.css">
     <!-- 引入 WeUI -->
     <link rel="stylesheet" href="http://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css">    
@@ -60,7 +60,7 @@
 	    		if(data != null && data.status == 0){	    			
 	    			if(data.data.records != undefined && data.data.records != null){
 	    				$.each(data.data.records,function(index, item){
-	    				    if (item.tradeType == 2 || item.tradeType == 3) {
+	    				    if (item.tradeType == 1) {
                                 var html = createItem(item);
                                 myList.addItem(html);
                             }

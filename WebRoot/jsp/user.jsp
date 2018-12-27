@@ -79,13 +79,49 @@
                             <div class="cell-icon">
                                 <i class="iconfont icon-ccgl-pandianjilu-3 icon-color_3"></i>
                             </div>
-                            <div class="cell-content">交易记录</div>
+                            <div class="cell-content">充值记录</div>
                             <div class="cell-yb">
                                 <i class="iconfont icon-youbian"></i>
                             </div>
                         </a>
                     </div>
 
+                    <div class="navigation-cell">
+                        <a href="user/consumeRecord.jsp" class="navigation-link">
+                            <div class="cell-icon">
+                                <i class="iconfont icon-feiyongzhichu icon-color_3"></i>
+                            </div>
+                            <div class="cell-content">消费记录</div>
+                            <div class="cell-yb">
+                                <i class="iconfont icon-youbian"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="navigation-cell">
+                        <a href="myChargeList.jsp" class="navigation-link">
+                            <div class="cell-icon">
+                                <i class="iconfont icon-shandian icon-color_3"></i>
+                            </div>
+                            <div class="cell-content">当前充电</div>
+                            <div class="cell-yb">
+                                <i class="iconfont icon-youbian"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="navigation-cell">
+                        <a href="#" class="navigation-link">
+                            <div class="cell-icon">
+                                <i class="iconfont icon-bangding icon-color_3"></i>
+                            </div>
+                            <div class="cell-content">常用充电桩</div>
+                            <div class="cell-yb">
+                                <i class="iconfont icon-youbian"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <!--
                     <div class="navigation-cell">
                         <a href="user/news.jsp" class="navigation-link">
                             <div class="cell-icon">
@@ -132,6 +168,7 @@
                             </div>
                         </a>
                     </div>
+                    -->
 
                     <div class="navigation-cell">
                         <a href="<%=path%>/<%=AppConfig.LICENSE%>" class="navigation-link">

@@ -92,6 +92,9 @@
                 if (req.status == 0) {
                     initChargeListView(req.data);
                 } else {
+                    if  (data.status == 20007) {
+                        $(".bodyContent").append("您当前未充电");
+                    }
                     if (data.status == 10000) {
                         window.location.replace = "<%=AppConfig.DOMAIN%><%=path%>/weChatLogin?tmp=jsp/myChargeList.jsp";
                         return;
